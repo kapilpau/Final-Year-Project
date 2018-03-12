@@ -1,0 +1,117 @@
+to run:
+
+    terminal 1: nodemon
+    terminal 2: webpack
+    localhost: 3001
+
+    or
+
+    Run
+    localhost:3000
+
+to do list:
+
+    1) register (Complete)
+        a) validation
+        b) hashing passwords
+
+    2) login (Complete)
+        a) create sessions/cookies
+
+    3) logout (Complete)
+        a) delete sessions/cookies
+
+    4) Homepage (Complete)
+        a) the task
+        b) the problem
+        c) the solution
+
+    5) Dashboard
+        a) user info
+        b) meeting stats
+        c) upcoming meetings **
+        d) invites **
+
+    6) create meeting
+        a) meeting name
+        b) meeting description
+        c) meeting location
+        d) choose date via datepicker
+        e) choose lowerbound time via timepicker
+        f) choose upperbound time via timepicker
+        h) choose required duration (number of mins/hours)
+        g) (if needed) click button to add more dates and times
+        h) select private/public and apply password if private
+        g) submit and store in db
+
+    7) join meeting
+        a) enter meeting id - either enter url or enter meeting id into dahsboard input field
+        b) if private meeting insert password
+        c) insert free period(s)
+        d) choose preferred start time
+        e) submit available times and store in db
+
+    8) see meeting participants
+        a) enter meeting id - either enter url or enter meeting id into dahsboard input field
+        b) if private meeting insert password
+        c) shows all entries in graph form
+
+DB tables:
+
+CREATE TABLE `users` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(16) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `password` binary(60) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `urls` (
+  `id` varchar(11) NOT NULL DEFAULT '',
+  `meetingID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `sessions` (
+  `session_id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `expires` int(11) unsigned NOT NULL,
+  `data` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  PRIMARY KEY (`session_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `MeetingParticipation` (
+  `meetingID` int(11) DEFAULT NULL,
+  `username` varchar(16) DEFAULT NULL,
+  `lowerbound` int(11) DEFAULT NULL,
+  `upperbound` int(11) DEFAULT NULL,
+  `LBFlex` int(11) DEFAULT NULL,
+  `UBFlex` int(11) DEFAULT NULL,
+  `comment` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `MeetingInfo` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `title` text NOT NULL,
+  `description` text,
+  `location` text NOT NULL,
+  `adminUsername` varchar(16) NOT NULL DEFAULT '',
+  `numOfDates` int(10) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `Locked` tinyint(1) NOT NULL DEFAULT '0',
+  `password` binary(60) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `MeetingDates` (
+  `meetingId` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `lowerboundLimit` int(11) DEFAULT '0',
+  `upperboundLimit` int(11) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

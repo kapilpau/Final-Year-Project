@@ -1,0 +1,66 @@
+{{> header }}
+
+<div class="container">
+
+    <h1>{{title}}</h1>
+
+    {{#if errors}}
+        {{#each errors}}
+            <div class="alert alert-danger">
+                {{this.msg}}
+            </div>
+        {{/each}}
+    {{/if}}
+
+    <form method="POST" action="/register">
+        <div class="form-group">
+            <label for="meeting_title">Meeting Title</label>
+            <input type="text" class="form-control" name="meeting_title" placeholder="Title">
+        </div>
+
+        <div class="form-group">
+            <label for="meeting_description">Description</label>
+            <textarea class="form-control" name="meeting_description" rows="2" placeholder="Description"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="meeting_location">Location</label>
+            <input type="text" class="form-control" name="meeting_location" placeholder="Location">
+        </div>
+
+        <div class="container">
+
+        </div>
+
+        <div>
+            <div class="checkbox">
+                <label><input type="checkbox" id="privacy" onclick="showHidePass()"> Private</label>
+            </div>
+            <div id="meetingPasswordDiv" style="display: none;">
+                <label for="meeting_password">Meeting Password</label>
+                <input type="text" class="form-control" id="hidden_field" name="meeting_password" placeholder="Password">
+            </div>
+        </div>
+
+        <br><br>
+
+        <div class="input-group date" data-provide="datepicker">
+            <input type="date" id="date">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-th"></span>
+            </div>
+        </div>
+
+        <div class="input-group clockpicker">
+            <input type="time" name="start_time" id="start_time" value="09:30">
+            <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"><i class="material-icons">access_time</i></span>
+            </span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
+
+{{> footer-end }}
