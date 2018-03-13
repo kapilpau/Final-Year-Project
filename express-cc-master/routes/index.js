@@ -3,22 +3,24 @@ var router = express.Router();
 
 var expressValidator = require('express-validator');
 var passport = require('passport');
-
+var sqlite = require('sqlite-sync');
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
+
 /*var datepicker = require('js-datepicker');
 const picker = datepicker(selector, options);*/
-
+sqlite.connect(__dirname + '/../db/meetings.db');
 /* GET home page. */
 router.get('/', function (req, res) {
     console.log(req.user);
-    console.log(req.isAuthenticated())
+    console.log(req.isAuthenticated());
     res.render('Homepage', {title: 'Homepage'});
 });
 
 /* GET dashboard page. */
 router.get('/dashboard', authenticationMiddleware(), function (req,res) {
+    console.log('Got dashboard');
     res.render('dashboard', {title: 'Dashboard'});
 });
 
@@ -68,16 +70,14 @@ router.post('/register', function (req, res, next) {
         const password = req.body.password;
 
 
-        const db = require('../db.js')
 
         bcrypt.hash(password, saltRounds, function (err, hash) {
-            db.query('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', [username, email, hash], function (error, results, fields) {
-                if (error) throw error;
-
-                db.query('SELECT LAST_INSERT_ID() as user_id', function (error, results, fields) {
-                    if (error) throw error;
-
-                    const user_id = results[0];
+            sqlite.run("INSERT INTO users (username, email, password) VALUES ('"+username+"', '"+ email +"', '"+hash+"')", function (results){
+                if (results.error) throw res.error;
+                sqlite.run('SELECT LAST_INSERT_ID() as user_id', function (res) {
+                    if (res.error) throw res.error;
+                    console.log(JSON.stringify(res))
+                    const user_id = res[0];
 
                     console.log(results[0]);
                     req.login(user_id, function (err) {
@@ -101,16 +101,23 @@ passport.deserializeUser(function (user_id, done) {
 
 function authenticationMiddleware () {
     return (req, res, next) => {
-        console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
-
+        console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport.user)}`);
+        console.log(req.isAuthenticated());
         if (req.isAuthenticated()) return next();
         res.redirect('/login')
     }
 }
 
 /* GET meetings page. */
+
+router.get('/meeting/:id', authenticationMiddleware(), function (req,res) {
+    res.render('meeting', {title: 'Meeting '});
+});
+
+/* GET meetings page. */
 router.get('/meeting', authenticationMiddleware(), function (req,res) {
     res.render('meeting', {title: 'Meeting '});
+
 });
 
 module.exports = router;
