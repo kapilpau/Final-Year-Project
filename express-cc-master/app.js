@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
-
+var sqlite = require('sqlite-sync');
 
 // Authentication packages
 var session = require('express-session');
@@ -18,9 +18,13 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+var session = require('express-session');
+var SQLiteStore = require('connect-sqlite3')(session);
+
 
 require('dotenv').config();
 
+sqlite.connect(__dirname + '/db/meetings.db');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -34,23 +38,14 @@ app.use(expressValidator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
 
-var options = {
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
-};
-
-var sessionStore = new MySQLStore(options);
-
 app.use(session({
     secret: 'abcdefg',
     resave: false,
-    store: sessionStore,
-    saveUninitialized: false,
-    // cookie: { secure: true }
-}))
+    store: new SQLiteStore,
+    saveUninitialized: false
+}));
+
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -66,13 +61,9 @@ passport.use(new LocalStrategy(function (username, password, done) {
         console.log(username);
         console.log(password);
 
-        const db = require('./db');
-        db.query('SELECT id, password FROM users WHERE username = ?', [username], function (err, results, fields) {
-            if (err) {
-                done(err)
-            }
-            ;
 
+        sqlite.run("SELECT id, password FROM users WHERE username = '"+ username +"'", function (results) {
+            console.log("Results: "+JSON.stringify(results));
             if (results.length === 0) {
                 done(null, false);
             } else{
@@ -81,15 +72,22 @@ passport.use(new LocalStrategy(function (username, password, done) {
 
                 bcrypt.compare(password, hash, function (err, response) {
                     if (response === true) {
+                        console.log("Response true");
+                        console.log("ID:" + results[0].id);
                         return done(null, {user_id: results[0].id});
                     } else {
+                        console.log("Response false");
                         return done(null, false);
                     }
                 });
             }
+        });
 
 
-        })
+
+
+
+
     }
 ));
 
