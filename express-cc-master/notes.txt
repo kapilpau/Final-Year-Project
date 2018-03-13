@@ -12,19 +12,20 @@ to run:
 to do list:
 
     1) register (Complete)
-        a) validation
-        b) hashing passwords
+        a) validation //
+        b) hashing passwords //
 
     2) login (Complete)
-        a) create sessions/cookies
+        a) create sessions/cookies //
 
     3) logout (Complete)
-        a) delete sessions/cookies
+        a) delete sessions/cookies //
 
-    4) Homepage (Complete)
-        a) the task
-        b) the problem
-        c) the solution
+    4) Homepage
+        a) the task //
+        b) the problem //
+        c) the solution //
+        d) how to
 
     5) Dashboard
         a) user info
@@ -33,15 +34,15 @@ to do list:
         d) invites **
 
     6) create meeting
-        a) meeting name
-        b) meeting description
-        c) meeting location
-        d) choose date via datepicker
-        e) choose lowerbound time via timepicker
-        f) choose upperbound time via timepicker
+        a) meeting name //
+        b) meeting description //
+        c) meeting location //
+        d) choose date via datepicker //
+        e) choose lowerbound time via timepicker //
+        f) choose upperbound time via timepicker //
         h) choose required duration (number of mins/hours)
-        g) (if needed) click button to add more dates and times
-        h) select private/public and apply password if private
+        g) (if needed) click button to add more dates and times //
+        h) select private/public and apply password if private //
         g) submit and store in db
 
     7) join meeting
