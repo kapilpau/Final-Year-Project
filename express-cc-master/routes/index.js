@@ -113,17 +113,6 @@ function authenticationMiddleware () {
 }
 
 /* GET meetings page. */
-router.get('/meeting/:id', authenticationMiddleware(), function (req,res) {
-    res.render('meeting', {title: 'Meeting '});
-
-    eventEmitter.on('checked', function() {
-        console.log('checked');
-    })
-
-    eventEmitter.emit('checked');
-});
-
-/* GET meetings page. */
 router.get('/meeting', authenticationMiddleware(), function (req,res) {
     res.render('meeting', {title: 'Meeting '});
 
