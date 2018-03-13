@@ -93,7 +93,6 @@ passport.use(new LocalStrategy(function (username, password, done) {
     }
 ));
 
-
 app.get('/*', function (req, res) {
     var fileName = (__dirname + "/" + req.params[0]);
     console.log(fileName);

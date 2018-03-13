@@ -7,6 +7,9 @@ var passport = require('passport');
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
+/*var datepicker = require('js-datepicker');
+const picker = datepicker(selector, options);*/
+
 /* GET home page. */
 router.get('/', function (req, res) {
     console.log(req.user);
