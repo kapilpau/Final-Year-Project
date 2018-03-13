@@ -7,13 +7,6 @@ var passport = require('passport');
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-var events = require('events');
-
-var eventEmitter = new events.EventEmitter();
-
-/*var datepicker = require('js-datepicker');
-const picker = datepicker(selector, options);*/
-
 /* GET home page. */
 router.get('/', function (req, res) {
     console.log(req.user);
@@ -115,12 +108,6 @@ function authenticationMiddleware () {
 /* GET meetings page. */
 router.get('/meeting', authenticationMiddleware(), function (req,res) {
     res.render('meeting', {title: 'Meeting '});
-
-    eventEmitter.on('checked', function() {
-        console.log('checked');
-    })
-
-    eventEmitter.emit('checked');
 });
 
 module.exports = router;
