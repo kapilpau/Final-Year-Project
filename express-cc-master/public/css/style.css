@@ -1,4 +1,27 @@
 body {
   margin: 0; }
 
+.fit {
+  max-width: 50%;
+  max-height: 50%;
+}
+.center {
+  display: block;
+  margin: auto;
+}
+
+.header2 {
+  color: #5e5e5e;
+}
+
+.imageCaption {
+  font-style: italic;
+  color: #2b669a;
+}
+
+.dashboardNav{
+  padding-left: 7%;
+  padding-right: 7%;
+}
+
 /*# sourceMappingURL=style.css.map*/

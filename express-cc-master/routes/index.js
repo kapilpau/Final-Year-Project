@@ -7,11 +7,6 @@ var sqlite = require('sqlite-sync');
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-var events = require('events');
-
-var eventEmitter = new events.EventEmitter();
-
-
 
 /*var datepicker = require('js-datepicker');
 const picker = datepicker(selector, options);*/
@@ -114,6 +109,7 @@ function authenticationMiddleware () {
 }
 
 /* GET meetings page. */
+
 router.get('/meeting/:id', authenticationMiddleware(), function (req,res) {
     res.render('meeting', {title: 'Meeting '});
 });
