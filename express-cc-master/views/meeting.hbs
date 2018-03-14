@@ -43,21 +43,26 @@
 
                 <br>
 
-                <div id="meeting_option" class="form-group meetingOptions">
-                    <div class="input-group date form-group" data-provide="datepicker">
+                <div id="meeting_option" class="meetingOptions">
+                    <div class="input-group date" data-provide="datepicker">
                         <label for="date">Meeting Date
                         <input type="date" id="date">
                         </label>
                     </div>
                     <br>
-                    <div class="input-group clockpicker form-group">
+                    <div class="input-group clockpicker">
                         <label for="start_time">Lowerbound Time
                         <input type="time" name="start_time" id="start_time" value="09:00"></label>
                     </div>
                     <br>
-                    <div class="input-group clockpicker form-group">
+                    <div class="input-group clockpicker">
                         <label for="end_time">Upperbound Time
                         <input type="time" name="end_time" id="end_time" value="17:00"></label>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="duration">Duration
+                        <input type="text" id="duration" name="duration"><br>
                     </div>
                 </div>
                 <div id="new_pos"></div>
@@ -112,6 +117,19 @@
                 }
             }
 
+        </script>
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+        <script src="public/js/duration-picker.js"></script>
+        <script>
+             var input = $("#duration");
+             var button = $("#button");
+
+             // Change this to use options
+            input.durationPicker();
+
+            button.on('click', function () {
+             $("#result").val(input.val());
+             })
         </script>
     </body>
 </html>
