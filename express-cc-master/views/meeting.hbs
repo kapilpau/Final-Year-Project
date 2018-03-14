@@ -50,6 +50,12 @@
                         </label>
                     </div>
                     <br>
+                    <div class="input-group date form-group" data-provide="datepicker">
+                        <label for="date">Meeting Length
+                            <p><input type="range" id="length" min="0" max="4" value="0" step="0.5">      Length: <span id="length_span"></span> hour(s)</p>
+                        </label>
+                    </div>
+                    <br>
                     <div class="input-group clockpicker form-group">
                         <label for="start_time">Lowerbound Time
                         <input type="time" name="start_time" id="start_time" value="09:00"></label>
@@ -65,7 +71,7 @@
                     <button type="button" onClick="createDiv()" class="btn btn-secondary">New Option</button>
                 </div>
                 <br>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" id="submit" onclick="submit()" class="btn btn-primary">Submit</button>
             </form>
 
 
@@ -90,6 +96,34 @@
                 document.getElementById("meeting_option").appendChild(div);
             }
 
+            function submit() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("POST", "", true);
+                xhttp.setRequestHeader("Content-type", "application/json");
+                var params = {
+                    "title": ,
+                    "description": ,
+                    "location": ,
+                    "private": ,
+                    "locked": ,
+                    "password": ,
+                    "length":
+                };
+                xhttp.send(JSON.parse(params));
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        console.log(this.responseText);
+                    }
+                };
+            }
+
+            var slider = document.getElementById("length");
+            var output = document.getElementById("length_span");
+            output.innerHTML = slider.value;
+
+            slider.oninput = function() {
+                output.innerHTML = this.value;
+            }
         </script>
     </body>
 </html>

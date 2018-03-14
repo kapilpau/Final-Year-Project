@@ -38,6 +38,12 @@ router.get('/logout', function (req, res, next) {
     res.redirect('/');
 });
 
+
+/* POST meeting details */
+router.post('/createMeeting', function (req, res, next) {
+
+})
+
 /* GET Register page. */
 router.get('/register', function (req, res, next) {
     res.render('register', {title: 'Registration'});
