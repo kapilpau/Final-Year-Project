@@ -60,9 +60,11 @@
                         <input type="time" name="end_time" id="end_time" value="17:00"></label>
                     </div>
                 </div>
-                <br>
+                <div id="new_pos"></div>
+                <br><br>
                 <div id="create">
-                    <button type="button" onClick="createDiv()" class="btn btn-secondary">New Option</button>
+                    <button type="button" onClick="createDiv()" class="btn btn-success">Add</button> <br><br>
+                    <button id="remove_option" type="button" onclick="removeDiv()" class="btn btn-danger" style="display: none";>Remove</button>
                 </div>
                 <br>
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -85,9 +87,29 @@
             }
 
             function createDiv() {
+                dateCounter++;
+                var x = document.getElementById("remove_option");
+                x.style.display= "block";
+
                 var div = document.createElement('div');
+                var id = "meeting_option" + dateCounter;
+                div.id = id;
+                div.className = "meetingOptions";
                 div.innerHTML = document.getElementById('meeting_option').innerHTML;
-                document.getElementById("meeting_option").appendChild(div);
+                document.getElementById("new_pos").appendChild(div);
+                var newPos = document.getElementById(id);
+                newPos.scrollIntoView();
+
+            }
+
+            function removeDiv() {
+                var x = document.getElementById("remove_option");
+                var elem = document.getElementById('meeting_option' + dateCounter);
+                elem.parentNode.removeChild(elem);
+                dateCounter--;
+                if(dateCounter == 1){
+                    x.style.display= "none";
+                }
             }
 
         </script>
