@@ -43,27 +43,26 @@
 
                 <br>
 
-                <div id="meeting_option" class="form-group meetingOptions">
-                    <div class="input-group date form-group" data-provide="datepicker">
+                <div id="meeting_option" class="meetingOptions">
+                    <div class="input-group date" data-provide="datepicker">
                         <label for="date">Meeting Date
                         <input type="date" id="date">
                         </label>
                     </div>
                     <br>
-                    <div class="input-group date form-group" data-provide="datepicker">
-                        <label for="date">Meeting Length
-                            <p><input type="range" id="length" min="0" max="4" value="0" step="0.5">      Length: <span id="length_span"></span> hour(s)</p>
-                        </label>
-                    </div>
-                    <br>
-                    <div class="input-group clockpicker form-group">
+                    <div class="input-group clockpicker">
                         <label for="start_time">Lowerbound Time
                         <input type="time" name="start_time" id="start_time" value="09:00"></label>
                     </div>
                     <br>
-                    <div class="input-group clockpicker form-group">
+                    <div class="input-group clockpicker">
                         <label for="end_time">Upperbound Time
                         <input type="time" name="end_time" id="end_time" value="17:00"></label>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="duration">Duration
+                        <input type="text" id="duration" name="duration"><br>
                     </div>
                 </div>
                 <div id="new_pos"></div>
@@ -73,7 +72,7 @@
                     <button id="remove_option" type="button" onclick="removeDiv()" class="btn btn-danger" style="display: none";>Remove</button>
                 </div>
                 <br>
-                <button type="button" id="submit" onclick="submit()" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
 
 
