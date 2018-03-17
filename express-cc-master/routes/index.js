@@ -41,8 +41,12 @@ router.get('/logout', function (req, res, next) {
 
 /* POST meeting details */
 router.post('/createMeeting', function (req, res, next) {
-
-})
+    // sqlite.run("INSERT INTO MeetingInfo (title, description, location, adminUsername, locked, password) VALUES ('"+ req.params.title +"', '"+ req.params.description +"', '"+ req.params.location +"', '"+ req.session.passport.user.user_id +"', '"+ req.params.locked +"', '"+ req.params.password +"');", function (results) {
+    console.log("\n\n\n\n\nSession details: ")
+    console.log(JSON.stringify(req.session));
+    res.status(200).end("Check console");
+    // });
+});
 
 /* GET Register page. */
 router.get('/register', function (req, res, next) {
@@ -107,7 +111,7 @@ passport.deserializeUser(function (user_id, done) {
 
 function authenticationMiddleware () {
     return (req, res, next) => {
-        console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport.user)}`);
+        console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport.user.user_id)}`);
         console.log(req.isAuthenticated());
         if (req.isAuthenticated()) return next();
         res.redirect('/login')

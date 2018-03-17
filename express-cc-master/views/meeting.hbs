@@ -12,20 +12,19 @@
                 {{/each}}
             {{/if}}
 
-            <form>
                 <div class="form-group">
                     <label for="meeting_title">Meeting Title</label>
-                    <input type="text" class="form-control" name="meeting_title" placeholder="Title">
+                    <input type="text" class="form-control" name="meeting_title" id="meeting_title" placeholder="Title">
                 </div>
 
                 <div class="form-group">
                     <label for="meeting_description">Description </label>
-                    <textarea class="form-control" name="meeting_description" rows="2" placeholder="Description"></textarea>
+                    <textarea class="form-control" name="meeting_description" id="meeting_description" rows="2" placeholder="Description"></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="meeting_location">Location</label>
-                    <input type="text" class="form-control" name="meeting_location" placeholder="Location">
+                    <input type="text" class="form-control" name="meeting_location" id="meeting_location" placeholder="Location">
                 </div>
 
                 <div class="container">
@@ -37,7 +36,7 @@
                     </div>
                     <div id="meetingPasswordDiv" style="display: none;">
                         <label for="meeting_password">Meeting Password</label>
-                        <input type="text" class="form-control" id="hidden_field" name="meeting_password" placeholder="Password">
+                        <input type="text" class="form-control" id="meeting_password" name="meeting_password" placeholder="Password">
                     </div>
                 </div>
 
@@ -62,7 +61,8 @@
                     <br>
                     <div>
                         <label for="duration">Duration
-                        <input type="text" id="duration" name="duration"><br>
+                            <p><input type="range" id="length" min="0" max="4" value="0" step="0.5">      Length: <span id="length_span"></span> hour(s)</p>
+                        </label>
                     </div>
                 </div>
                 <div id="new_pos"></div>
@@ -72,79 +72,102 @@
                     <button id="remove_option" type="button" onclick="removeDiv()" class="btn btn-danger" style="display: none";>Remove</button>
                 </div>
                 <br>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+                <button type="button" onClick="submit()" class="btn btn-primary">Submit</button>
 
 
         </div>
-
-        <script>
-            var dateCounter = 1;
-
-            function showHidePass() {
-                if (document.getElementById('privacy').checked)
-                {
-                    document.getElementById('meetingPasswordDiv').style.display = 'block';
-                } else {
-                    document.getElementById('meetingPasswordDiv').style.display = 'none';
-                }
-
-            }
-
-            function createDiv() {
-                dateCounter++;
-                var x = document.getElementById("remove_option");
-                x.style.display= "block";
-
-                var div = document.createElement('div');
-                var id = "meeting_option" + dateCounter;
-                div.id = id;
-                div.className = "meetingOptions";
-                div.innerHTML = document.getElementById('meeting_option').innerHTML;
-                document.getElementById("new_pos").appendChild(div);
-                var newPos = document.getElementById(id);
-                newPos.scrollIntoView();
-
-            }
-
-            function removeDiv() {
-                var x = document.getElementById("remove_option");
-                var elem = document.getElementById('meeting_option' + dateCounter);
-                elem.parentNode.removeChild(elem);
-                dateCounter--;
-                if(dateCounter == 1){
-                    x.style.display= "none";
-                }
-            }
-
-            function submit() {
-                var xhttp = new XMLHttpRequest();
-                xhttp.open("POST", "", true);
-                xhttp.setRequestHeader("Content-type", "application/json");
-                var params = {
-                    "title": ,
-                    "description": ,
-                    "location": ,
-                    "private": ,
-                    "locked": ,
-                    "password": ,
-                    "length":
-                };
-                xhttp.send(JSON.parse(params));
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        console.log(this.responseText);
-                    }
-                };
-            }
-
-            var slider = document.getElementById("length");
-            var output = document.getElementById("length_span");
-            output.innerHTML = slider.value;
-
-            slider.oninput = function() {
-                output.innerHTML = this.value;
-            }
-        </script>
     </body>
+<script>
+    var dateCounter = 1;
+
+    function showHidePass() {
+        if (document.getElementById('privacy').checked)
+        {
+            document.getElementById('meetingPasswordDiv').style.display = 'block';
+        } else {
+            document.getElementById('meetingPasswordDiv').style.display = 'none';
+        }
+
+    }
+
+    function createDiv() {
+        dateCounter++;
+        var x = document.getElementById("remove_option");
+        x.style.display= "block";
+
+        var div = document.createElement('div');
+        var id = "meeting_option" + dateCounter;
+        div.id = id;
+        div.className = "meetingOptions";
+        div.innerHTML = document.getElementById('meeting_option').innerHTML;
+        document.getElementById("new_pos").appendChild(div);
+        var newPos = document.getElementById(id);
+        newPos.scrollIntoView();
+
+    }
+
+    function removeDiv() {
+        var x = document.getElementById("remove_option");
+        var elem = document.getElementById('meeting_option' + dateCounter);
+        elem.parentNode.removeChild(elem);
+        dateCounter--;
+        if(dateCounter == 1){
+            x.style.display= "none";
+        }
+    }
+
+    function submit() {
+        console.log("Submitted");
+        var submittable = true;
+        if (!document.getElementById('meeting_title').value){
+            document.getElementById('meeting_title').style.border = "solid #FF0000";
+        }
+        if (!document.getElementById('meeting_description').value){
+            document.getElementById('meeting_description').style.border = "solid #FF0000";
+        }
+        if (!document.getElementById('meeting_location').value){
+            document.getElementById('meeting_location').style.border = "solid #FF0000";
+        }
+        if (!document.getElementById('meeting_password').value){
+            document.getElementById('meeting_password').style.border = "solid #FF0000";
+        }
+//        if (!submittable)
+//        {
+//            return;
+//        }
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "/createMeeting", true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        var params = {
+            "title": document.getElementById('meeting_title').value,
+            "description": document.getElementById('meeting_description').value,
+            "location": document.getElementById('meeting_location').value,
+            "locked": document.getElementById('privacy').checked,
+            "password": document.getElementById('meeting_password').value
+        };
+        console.log(params);
+//        xhttp.send(JSON.parse(params));
+        xhttp.send(params);
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+            }
+        };
+    }
+
+    var slider = document.getElementById("length");
+    var output = document.getElementById("length_span");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function() {
+        output.innerHTML = this.value;
+    }
+
+    var slider = document.getElementById("length");
+    var output = document.getElementById("length_span");
+    output.innerHTML = slider.value;
+    slider.oninput = function() {
+        output.innerHTML = this.value;
+    }
+</script>
 </html>
