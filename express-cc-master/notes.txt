@@ -33,18 +33,6 @@ to do list:
         c) upcoming meetings **
         d) invites **
 
-    6) create meeting
-        a) meeting name //
-        b) meeting description //
-        c) meeting location //
-        d) choose date via datepicker //
-        e) choose lowerbound time via timepicker //
-        f) choose upperbound time via timepicker //
-        h) choose required duration (number of mins/hours)
-        g) (if needed) click button to add more dates and times //
-        h) select private/public and apply password if private //
-        g) submit and store in db
-
     7) join meeting
         a) enter meeting id - either enter url or enter meeting id into dahsboard input field
         b) if private meeting insert password

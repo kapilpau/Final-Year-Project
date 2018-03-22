@@ -87,6 +87,34 @@ router.post('/createMeeting', function (req, res, next) {
     });
 });
 
+router.post('/getMeeting', function (req, res, next) {
+    var id;
+    var response = {};
+    sqlite.run("SELECT id FROM urls WHERE meetingID = '"+req.body.id+"';", function (result) {
+        if (result.error) throw result.error;
+        id = result[0].id;
+        console.log(id);
+        sqlite.run("SELECT locked, password FROM MeetingInfo WHERE id='"+id+"';", function (data) {
+            if (data.error) throw data.error;
+            if (data[0].locked)
+            {
+                response.password = data[0].password;
+            }
+            else
+            {
+                response.password = null;
+            }
+            sqlite.run("SELECT * FROM MeetingDates WHERE meetingId='"+id+"';", function (output) {
+                if (output.error) throw output.error;
+                response.options = output;
+                console.log(JSON.stringify(response));
+                res.status(200).end(response);
+
+            });
+        });
+    });
+;})
+
 router.post('/addMeetingDates', function (req, res, next) {
     console.log("Updating meeting");
 });
@@ -160,7 +188,16 @@ function authenticationMiddleware () {
 /* GET meetings page. */
 
 router.get('/meeting/:id', authenticationMiddleware(), function (req,res) {
-    res.render('meeting', {title: 'Meeting '});
+    // res.render('meeting', {title: 'Meeting '});
+    sqlite.run("SELECT id FROM urls WHERE meetingID='"+req.params.id+"'", function (response) {
+        if (response.error) throw response.error;
+        if (JSON.stringify(response) == "[]")
+        {
+            res.status(404).end("Meeting not found");
+        } else {
+            res.status(200).render('meetingDetails', {title: 'Meeting Details'});
+        }
+    });
 });
 
 /* GET meetings page. */
