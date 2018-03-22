@@ -112,7 +112,8 @@
                     <div>
                         <label for="length${dateCounter}">Duration
                             <p><input type="range" id="length${dateCounter}" min="0" max="4" value="0" step="0.5" onClick="document.getElementById('length_span${dateCounter}').innerHTML = document.getElementById('length${dateCounter}').value">      Length: <span id="length_span${dateCounter}"></span> hour(s)</p>
-                        </label>`;
+                        </label>
+                    </div>`;
         var div = document.createElement('div');
         var id = "meeting_option" + dateCounter;
         div.id = id;
@@ -134,6 +135,7 @@
     }
 
     function submit() {
+        var submittable = true;
         console.log("Submitting");
         var submittable = true;
         if (!document.getElementById('meeting_title').value) {
@@ -196,7 +198,16 @@
         xhttp.send(JSON.stringify(params));
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.responseText) {
-                alert("Your url is " + window.location.href.split("/")[window.location.href.split("/").length - 1] + "/" + this.responseText);
+                if (this.readyState == 4 && this.responseText) {
+                    if (this.status === 200)
+                    {
+                        alert("Your url is " + window.location.href.split("/")[window.location.href.split("/").length - 1] + "/" + this.responseText);
+                        window.href.replace("./" + this.responseText);
+                    } else
+                    {
+                        alert("Error: " + this.responseText)
+                    }
+                }
             }
         };
     }
