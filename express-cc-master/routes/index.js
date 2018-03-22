@@ -6,6 +6,7 @@ var passport = require('passport');
 var sqlite = require('sqlite-sync');
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
+var path = require('path');
 
 
 /*var datepicker = require('js-datepicker');
@@ -214,12 +215,6 @@ function authenticationMiddleware () {
 /* GET meetings page. */
 
 router.get('/meeting/:id', authenticationMiddleware(), function (req,res) {
-    // res.render('meeting', {title: 'Meeting '});
-    // var filename = __dirname + '../' + req.params[0];
-    // if (!fs.existsSync(filename))
-    // {
-    //     res.sendFile(filename);
-    // }
     sqlite.run("SELECT id FROM urls WHERE meetingID='"+req.params.id+"'", function (response) {
         if (response.error) throw response.error;
         if (JSON.stringify(response) == "[]")
@@ -231,6 +226,17 @@ router.get('/meeting/:id', authenticationMiddleware(), function (req,res) {
     });
 });
 
+router.get('/meeting/*', authenticationMiddleware(), function (req,res) {
+    console.log("Trying to load " + __dirname + '/../' + req.params[0]);
+    var filename = __dirname + '/../' + req.params[0];
+    if (!fs.existsSync(filename))
+    {
+        res.status(404).end('Not found');
+    } else {
+        res.status(200).sendFile(path.resolve(filename));
+    }
+});
+
 /* GET meetings page. */
 router.get('/meeting', authenticationMiddleware(), function (req,res) {
     res.render('meeting', {title: 'Meeting '});
@@ -238,17 +244,15 @@ router.get('/meeting', authenticationMiddleware(), function (req,res) {
 });
 
 router.get('/*', function (req, res) {
-    var filename = __dirname + '../' + req.params[0];
+    console.log("Trying to load " + __dirname + '/../' + req.params[0]);
+    var filename = __dirname + '/../' + req.params[0];
     if (!fs.existsSync(filename))
     {
         res.status(404).end('Not found');
     } else {
-        res.sendFile(filename);
+        res.status(200).sendFile(path.resolve(filename));
     }
 });
 
-function getId(url) {
-
-}
 
 module.exports = router;

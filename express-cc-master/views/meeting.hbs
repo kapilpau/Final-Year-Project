@@ -154,6 +154,10 @@
             document.getElementById('meeting_password').style.border = "solid #FF0000";
             submittable = false;
         }
+        if (!document.getElementById('privacy').checked)
+        {
+            document.getElementById('meeting_password').value = "";
+        }
         if (!submittable)
         {
             console.log("Error: not submittable");
@@ -202,7 +206,7 @@
                     if (this.status === 200)
                     {
                         alert("Your url is " + window.location.href.split("/")[window.location.href.split("/").length - 1] + "/" + this.responseText);
-                        window.href.replace("./" + this.responseText);
+                        window.location.replace("meeting/" + this.responseText);
                     } else
                     {
                         alert("Error: " + this.responseText)
