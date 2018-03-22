@@ -6,6 +6,7 @@ var passport = require('passport');
 var sqlite = require('sqlite-sync');
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
+var path = require('path');
 
 
 /*var datepicker = require('js-datepicker');
@@ -238,12 +239,9 @@ router.get('/*', function (req, res) {
     {
         res.status(404).end('Not found');
     } else {
-        res.status(200).sendFile(filename);
+        res.status(200).sendFile(path.resolve(filename));
     }
 });
 
-function getId(url) {
-
-}
 
 module.exports = router;
