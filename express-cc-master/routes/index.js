@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var fs = require('fs');
 var expressValidator = require('express-validator');
 var passport = require('passport');
 var sqlite = require('sqlite-sync');
@@ -87,8 +87,62 @@ router.post('/createMeeting', function (req, res, next) {
     });
 });
 
+router.post('/getMeeting', function (req, res, next) {
+    var id;
+    var response = {};
+    sqlite.run("SELECT id FROM urls WHERE meetingID = '"+req.body.id+"';", function (result) {
+        if (result.error) throw result.error;
+        id = result[0].id;
+        console.log(id);
+        sqlite.run("SELECT title, description, location, locked, password FROM MeetingInfo WHERE id='"+id+"';", function (data) {
+            if (data.error) throw data.error;
+            if (data[0].locked)
+            {
+                response.password = data[0].password;
+            }
+            else
+            {
+                response.password = null;
+            }
+            response.title = data[0].title;
+            response.description = data[0].description;
+            response.location = data[0].location;
+            sqlite.run("SELECT * FROM MeetingDates WHERE meetingId='"+id+"';", function (output) {
+                if (output.error) throw output.error;
+                response.options = output;
+                console.log(JSON.stringify(response));
+                res.status(200).end(JSON.stringify(response));
+
+            });
+        });
+    });
+;})
+
 router.post('/addMeetingDates', function (req, res, next) {
     console.log("Updating meeting");
+    console.log(JSON.stringify(req.body));
+    var id;
+    var cmd = "SELECT id FROM urls WHERE meetingID='"+req.body.id+"'";
+    sqlite.run(cmd, function (result) {
+        console.log(JSON.stringify(result));
+        id = result[0].id;
+    });
+    console.log(id);
+    req.body.options.forEach(function (option) {
+        cmd = "INSERT INTO MeetingDates (meetingid, date, lowerboundLimit, upperboundLimit, preferredStart, length) VALUES ('"+ id +"', '"+ option.date +"', '"+ option.start_time +"', '"+ option.end_time +"', '"+ option.pref_start +"', '"+ option.length +"');";
+        console.log(cmd);
+        sqlite.run(cmd, function (response) {
+            console.log(JSON.stringify(response));
+            if (response.error)
+            {
+                console.log("Error  :");
+                console.log(JSON.stringify(response.error));
+                res.status(400).end(response.error);
+            } else {
+                res.status(200).end(id);
+            }
+        });
+    });
 });
 
 /* GET Register page. */
@@ -160,7 +214,21 @@ function authenticationMiddleware () {
 /* GET meetings page. */
 
 router.get('/meeting/:id', authenticationMiddleware(), function (req,res) {
-    res.render('meeting', {title: 'Meeting '});
+    // res.render('meeting', {title: 'Meeting '});
+    // var filename = __dirname + '../' + req.params[0];
+    // if (!fs.existsSync(filename))
+    // {
+    //     res.sendFile(filename);
+    // }
+    sqlite.run("SELECT id FROM urls WHERE meetingID='"+req.params.id+"'", function (response) {
+        if (response.error) throw response.error;
+        if (JSON.stringify(response) == "[]")
+        {
+            res.status(404).end("Meeting not found");
+        } else {
+            res.status(200).render('meetingDetails', {title: 'Meeting Details'});
+        }
+    });
 });
 
 /* GET meetings page. */
@@ -168,5 +236,19 @@ router.get('/meeting', authenticationMiddleware(), function (req,res) {
     res.render('meeting', {title: 'Meeting '});
 
 });
+
+router.get('/*', function (req, res) {
+    var filename = __dirname + '../' + req.params[0];
+    if (!fs.existsSync(filename))
+    {
+        res.status(404).end('Not found');
+    } else {
+        res.sendFile(filename);
+    }
+});
+
+function getId(url) {
+
+}
 
 module.exports = router;
