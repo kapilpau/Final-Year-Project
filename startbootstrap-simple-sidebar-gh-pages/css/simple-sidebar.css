@@ -1,40 +1,3 @@
-body {
-  margin: 0; }
-
-.fit {
-  max-width: 50%;
-  max-height: 50%;
-}
-.center {
-  display: block;
-  margin: auto;
-}
-
-.header2 {
-  color: #5e5e5e;
-}
-
-.imageCaption {
-  font-style: italic;
-  color: #2b669a;
-}
-
-.dashboardNav{
-  padding-left: 7%;
-  padding-right: 7%;
-}
-
-.meetingOptions{
-
-  margin-bottom:5px;
-  margin-right: 10px;
-  margin-top: 5px;
-  padding:2%;
-  background: lightgray;
-  border-radius: 5%;
-  display: inline-block;
-}
-
 /*!
  * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template-overviews/simple-sidebar)
  * Copyright 2013-2017 Start Bootstrap
@@ -157,25 +120,3 @@ body {
     margin-right: 0;
   }
 }
-
-/*!
- * Start Bootstrap - Scrolling Nav (https://startbootstrap.com/template-overviews/scrolling-nav)
- * Copyright 2013-2017 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-scrolling-nav/blob/master/LICENSE)
- */
-
-header {
-  padding: 154px 0 100px;
-}
-
-@media (min-width: 992px) {
-  header {
-    padding: 156px 0 100px;
-  }
-}
-
-section {
-  padding: 150px 0;
-}
-
-/*# sourceMappingURL=style.css.map*/
