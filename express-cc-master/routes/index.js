@@ -7,10 +7,8 @@ var sqlite = require('sqlite-sync');
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 var path = require('path');
+var plotly = require('plotly')("pholbyyu", "yTpnM59UA4XJSA638mFY");
 
-
-/*var datepicker = require('js-datepicker');
-const picker = datepicker(selector, options);*/
 sqlite.connect(__dirname + '/../db/meetings.db');
 /* GET home page. */
 router.get('/', function (req, res) {
@@ -46,7 +44,7 @@ router.post('/createMeeting', function (req, res, next) {
     {
         var pass = req.body.password;
     }
-    var cmd = "INSERT INTO MeetingInfo (title, description, location, adminUsername, locked, password, numOfDates) VALUES ('"+ req.body.title +"', '"+ req.body.description +"', '"+ req.body.location +"', '"+ req.session.passport.user.user_id +"', '"+ req.body.locked +"', '"+ pass +"', 0);";
+    var cmd = "INSERT INTO MeetingInfo (title, description, location, adminUsername, locked, password, numOfDates, length) VALUES ('"+ req.body.title +"', '"+ req.body.description +"', '"+ req.body.location +"', '"+ req.session.passport.user.user_id +"', '"+ req.body.locked +"', '"+ pass +"', 0, '"+ req.body.length +"');";
     console.log(cmd);
     sqlite.run(cmd, function (results) {
         console.log(JSON.stringify(results));
@@ -58,7 +56,7 @@ router.post('/createMeeting', function (req, res, next) {
         } else {
             var id = results;
             req.body.options.forEach(function (option) {
-                cmd = "INSERT INTO MeetingDates (meetingid, date, lowerboundLimit, upperboundLimit, length) VALUES ('"+ id +"', '"+ option.date +"', '"+ option.start_time +"', '"+ option.end_time +"', '"+ option.length +"');";
+                cmd = "INSERT INTO MeetingDates (meetingid, date, lowerboundLimit, upperboundLimit) VALUES ('"+ id +"', '"+ option.date +"', '"+ option.start_time +"', '"+ option.end_time +"');";
                 console.log(cmd);
                 sqlite.run(cmd, function (response) {
                     console.log(JSON.stringify(response));
@@ -95,7 +93,7 @@ router.post('/getMeeting', function (req, res, next) {
         if (result.error) throw result.error;
         id = result[0].id;
         console.log(id);
-        sqlite.run("SELECT title, description, location, locked, password FROM MeetingInfo WHERE id='"+id+"';", function (data) {
+        sqlite.run("SELECT title, description, location, locked, password, length FROM MeetingInfo WHERE id='"+id+"';", function (data) {
             if (data.error) throw data.error;
             if (data[0].locked)
             {
@@ -108,6 +106,7 @@ router.post('/getMeeting', function (req, res, next) {
             response.title = data[0].title;
             response.description = data[0].description;
             response.location = data[0].location;
+            response.length = data[0].length;
             sqlite.run("SELECT * FROM MeetingDates WHERE meetingId='"+id+"';", function (output) {
                 if (output.error) throw output.error;
                 response.options = output;
@@ -119,6 +118,7 @@ router.post('/getMeeting', function (req, res, next) {
     });
 ;})
 
+/* POST create meeting */
 router.post('/addMeetingDates', function (req, res, next) {
     console.log("Updating meeting");
     console.log(JSON.stringify(req.body));
@@ -130,7 +130,64 @@ router.post('/addMeetingDates', function (req, res, next) {
     });
     console.log(id);
     req.body.options.forEach(function (option) {
-        cmd = "INSERT INTO MeetingDates (meetingid, date, lowerboundLimit, upperboundLimit, preferredStart, length) VALUES ('"+ id +"', '"+ option.date +"', '"+ option.start_time +"', '"+ option.end_time +"', '"+ option.pref_start +"', '"+ option.length +"');";
+        cmd = "INSERT INTO MeetingDates (meetingid, date, lowerboundLimit, upperboundLimit) VALUES ('"+ id +"', '"+ option.date +"', '"+ option.start_time +"', '"+ option.end_time +"');";
+        console.log(cmd);
+        sqlite.run(cmd, function (response) {
+            console.log(JSON.stringify(response));
+            if (response.error)
+            {
+                console.log("Error  :");
+                console.log(JSON.stringify(response.error));
+                res.status(400).end(response.error);
+            } else {
+                res.status(200).end(id);
+            }
+        });
+    });
+});
+
+/* POST create meeting */
+router.post('/addMeetingParticipant', function (req, res, next) {
+    console.log("Updating meeting");
+    console.log(JSON.stringify(req.body));
+    var id;
+    var cmd = "SELECT id FROM urls WHERE meetingID='"+req.body.id+"'";
+    sqlite.run(cmd, function (result) {
+        console.log(JSON.stringify(result));
+        id = result[0].id;
+    });
+    console.log(id);
+    req.body.options.forEach(function (option) {
+        cmd = "INSERT INTO MeetingParticipation (meetingID, Name, date, lowerbound, upperbound, preferred, comment) VALUES ('"+ id +"', '"+ option.name +"',  '"+ option.date +"', '"+ option.start_time +"', '"+ option.end_time +"', '"+ option.pref_start +"', '"+ option.comment +"');";
+        console.log(cmd);
+        sqlite.run(cmd, function (response) {
+            console.log(JSON.stringify(response));
+            if (response.error)
+            {
+                console.log("Error  :");
+                console.log(JSON.stringify(response.error));
+                res.status(400).end(response.error);
+            } else {
+                res.status(200).end(id);
+            }
+        });
+    });
+});
+
+router.post('/sendMeetingInvite', function (req, res, next) {
+    console.log("Sending Invite");
+    console.log(JSON.stringify(req.body));
+    var id;
+    var inviter;
+    var cmd = "SELECT id, username FROM urls WHERE meetingID='"+req.body.id+"'";
+    sqlite.run(cmd, function (result) {
+        console.log(JSON.stringify(result));
+        id = result[0].id;
+        inviter = result[0].username;
+    });
+    console.log(inviter);
+    req.body.options.forEach(function (option) {
+        cmd = "INSERT INTO MeetingInvite (InviterUsername, InviteeUsername, MeetingID) VALUES ('"+ inviter +"', '"+ option.invitee +"',  '"+ id +"');";
         console.log(cmd);
         sqlite.run(cmd, function (response) {
             console.log(JSON.stringify(response));
@@ -253,6 +310,5 @@ router.get('/*', function (req, res) {
         res.status(200).sendFile(path.resolve(filename));
     }
 });
-
 
 module.exports = router;

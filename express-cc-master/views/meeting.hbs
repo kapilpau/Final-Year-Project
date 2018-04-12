@@ -39,7 +39,16 @@
                         <input type="text" class="form-control" id="meeting_password" name="meeting_password" placeholder="Password">
                     </div>
                 </div>
+                <br>
+                <div>
+                    <label for="length">Duration
+                        <p>
+                            <input type="range" id="length1" min="0.25" max="5" value="0" step="0.25" onClick="document.getElementById('length_span1').innerHTML = document.getElementById('length1').value">
+                            Length: <span id="length_span1"></span> hour(s)
 
+                        </p>
+                    </label>
+                </div>
                 <br>
 
                 <div id="meeting_option1" class="meetingOptions">
@@ -58,12 +67,8 @@
                         <label for="end_time1">Upperbound Time
                         <input type="time" name="end_time1" id="end_time1"></label>
                     </div>
-                    <br>
-                    <div>
-                        <label for="length1">Duration
-                            <p><input type="range" id="length1" min="0" max="4" value="0" step="0.5" onClick="document.getElementById('length_span1').innerHTML = document.getElementById('length1').value">      Length: <span id="length_span1"></span> hour(s)</p>
-                        </label>
-                    </div>
+
+
                 </div>
                 <div id="new_pos"></div>
                 <br><br>
@@ -107,12 +112,6 @@
                     <div class="input-group clockpicker">
                         <label for="end_time${dateCounter}">Upperbound Time
                         <input type="time" name="end_time" id="end_time${dateCounter}"></label>
-                    </div>
-                    <br>
-                    <div>
-                        <label for="length${dateCounter}">Duration
-                            <p><input type="range" id="length${dateCounter}" min="0" max="4" value="0" step="0.5" onClick="document.getElementById('length_span${dateCounter}').innerHTML = document.getElementById('length${dateCounter}').value">      Length: <span id="length_span${dateCounter}"></span> hour(s)</p>
-                        </label>
                     </div>`;
         var div = document.createElement('div');
         var id = "meeting_option" + dateCounter;
@@ -185,7 +184,7 @@
                 console.log("Error: not submittable 2");
                 return;
             } else {
-                options.push({"date": document.getElementById('date'+no).value, "start_time": document.getElementById('start_time'+no).value, "end_time": document.getElementById('end_time'+no).value, "length": document.getElementById('length'+no).value});
+                options.push({"date": document.getElementById('date'+no).value, "start_time": document.getElementById('start_time'+no).value, "end_time": document.getElementById('end_time'+no).value, "length": document.getElementById('length1').value});
             }
         }
         var xhttp = new XMLHttpRequest();
@@ -197,6 +196,7 @@
             "location": document.getElementById('meeting_location').value,
             "locked": document.getElementById('privacy').checked,
             "password": document.getElementById('meeting_password').value,
+            "length": document.getElementById('length1').value,
             "options": options
         };
         xhttp.send(JSON.stringify(params));

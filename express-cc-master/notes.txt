@@ -104,3 +104,19 @@ CREATE TABLE `MeetingDates` (
   `lowerboundLimit` int(11) DEFAULT '0',
   `upperboundLimit` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+req.body.options.forEach(function (option) {
+        cmd = "INSERT INTO MeetingDates (meetingid, date, lowerboundLimit, upperboundLimit, preferredStart, length) VALUES ('"+ id +"', '"+ option.date +"', '"+ option.start_time +"', '"+ option.end_time +"', '"+ option.pref_start +"', '"+ option.length +"');";
+        console.log(cmd);
+        sqlite.run(cmd, function (response) {
+            console.log(JSON.stringify(response));
+            if (response.error)
+            {
+                console.log("Error  :");
+                console.log(JSON.stringify(response.error));
+                res.status(400).end(response.error);
+            } else {
+                res.status(200).end(id);
+            }
+        });
+    });
