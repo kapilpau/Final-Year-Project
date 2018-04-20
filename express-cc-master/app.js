@@ -55,7 +55,7 @@ app.use(function (req, res, next) {
 });
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/admin', users);
 
 passport.use(new LocalStrategy(function (username, password, done) {
         console.log(username);

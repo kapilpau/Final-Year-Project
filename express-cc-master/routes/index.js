@@ -44,7 +44,7 @@ router.post('/createMeeting', function (req, res, next) {
     {
         var pass = req.body.password;
     }
-    var cmd = "INSERT INTO MeetingInfo (title, description, location, adminUsername, locked, password, numOfDates, length) VALUES ('"+ req.body.title +"', '"+ req.body.description +"', '"+ req.body.location +"', '"+ req.session.passport.user.user_id +"', '"+ req.body.locked +"', '"+ pass +"', 0, '"+ req.body.length +"');";
+    var cmd = "INSERT INTO MeetingInfo (title, description, location, adminUsername, locked, password, length) VALUES ('"+ req.body.title +"', '"+ req.body.description +"', '"+ req.body.location +"', '"+ req.session.passport.user.user_id +"', '"+ req.body.locked +"', '"+ pass +"','"+ req.body.length +"');";
     console.log(cmd);
     sqlite.run(cmd, function (results) {
         console.log(JSON.stringify(results));
@@ -89,7 +89,7 @@ router.post('/createMeeting', function (req, res, next) {
 router.post('/getMeeting', function (req, res, next) {
     var id;
     var response = {};
-    sqlite.run("SELECT id FROM urls WHERE meetingID = '"+req.body.id+"';", function (result) {
+    sqlite.run("SELECT id FROM urls WHERE extension = '"+req.body.id+"';", function (result) {
         if (result.error) throw result.error;
         id = result[0].id;
         console.log(id);
@@ -112,18 +112,104 @@ router.post('/getMeeting', function (req, res, next) {
                 response.options = output;
                 console.log(JSON.stringify(response));
                 res.status(200).end(JSON.stringify(response));
-
             });
         });
     });
-;})
+});
+
+router.post('/getMeetingEntries', function (req, res, next) {
+    var id;
+    var response = {};
+    sqlite.run("SELECT id FROM urls WHERE extension = '"+req.body.id+"';", function (result) {
+        if (result.error) throw result.error;
+        id = result[0].id;
+        console.log(id);
+        sqlite.run("SELECT * FROM MeetingParticipation WHERE meetingId='"+id+"';", function (output) {
+            if (output.error) throw output.error;
+            response.options = output;
+            console.log(JSON.stringify(response));
+            res.status(200).end(JSON.stringify(response));
+        });
+    });
+});
+
+router.post('/getMeetingEntriesGraphs', function (req, res, next) {
+    var id;
+    var response = {};
+    var prefEnd = '';
+    sqlite.run("SELECT id FROM urls WHERE extension = '"+req.body.id+"';", function (result) {
+        if (result.error) throw result.error;
+        id = result[0].id;
+        console.log(id);
+        var duration;
+        sqlite.run("SELECT length FROM MeetingInfo WHERE id='"+id+"';", function (data) {
+            if (data.error) throw data.error;
+            duration = data[0].length;
+            console.log(duration);
+            sqlite.run("SELECT * FROM MeetingParticipation WHERE meetingId='"+id+"';", function (output) {
+                if (output.error) throw output.error;
+                response.duration = duration;
+                response.options = output;
+                console.log(JSON.stringify(response));
+                res.status(200).end(JSON.stringify(response));
+            });
+        });
+    });
+});
+
+router.post('/getUserInfo', function (req, res, next) {
+    var response = {};
+    sqlite.run("SELECT id, username, email, fullName FROM users WHERE id = '"+req.session.passport.user.user_id+"';", function (result) {
+        if (result.error) throw result.error;
+        response.options = result;
+        console.log(JSON.stringify(response));
+        res.status(200).end(JSON.stringify(response));
+    });
+});
+
+router.post('/getUserHost', function (req, res, next) {
+    var response = {};
+    var id;
+    sqlite.run("SELECT MeetingInfo.id AS id, title, extension FROM MeetingInfo INNER JOIN urls ON urls.id = MeetingInfo.id WHERE adminUsername = '"+req.session.passport.user.user_id+"';", function (result) {
+        if (result.error) throw result.error;
+        response.options = result;
+        console.log(JSON.stringify(response));
+        res.status(200).end(JSON.stringify(response));
+    });
+});
+
+router.post('/getUserParticipation', function (req, res, next) {
+    var response = {};
+    var id;
+    sqlite.run("SELECT MeetingParticipation.meetingID AS meetingID, date, preferred, extension FROM MeetingParticipation INNER JOIN urls ON urls.id = MeetingParticipation.meetingID WHERE userID = '"+req.session.passport.user.user_id+"';", function (result) {
+        if (result.error) throw result.error;
+        response.options = result;
+        console.log(JSON.stringify(response));
+        res.status(200).end(JSON.stringify(response));
+    });
+});
+
+router.post('/getUserInvites', function (req, res, next) {
+    var response = {};
+    var username;
+    sqlite.run("SELECT username FROM users WHERE id = '"+req.session.passport.user.user_id+"';", function (result) {
+        if (result.error) throw result.error;
+        username = result[0].username;
+        sqlite.run("SELECT InviterUsername, MeetingID FROM MeetingInvite WHERE InviteeUsername = '"+username+"';", function (output) {
+        if (output.error) throw output.error;
+        response.options = output;
+        console.log(JSON.stringify(response));
+        res.status(200).end(JSON.stringify(response));
+        });
+    });
+});
 
 /* POST create meeting */
 router.post('/addMeetingDates', function (req, res, next) {
     console.log("Updating meeting");
     console.log(JSON.stringify(req.body));
     var id;
-    var cmd = "SELECT id FROM urls WHERE meetingID='"+req.body.id+"'";
+    var cmd = "SELECT id FROM urls WHERE extension='"+req.body.id+"'";
     sqlite.run(cmd, function (result) {
         console.log(JSON.stringify(result));
         id = result[0].id;
@@ -151,14 +237,20 @@ router.post('/addMeetingParticipant', function (req, res, next) {
     console.log("Updating meeting");
     console.log(JSON.stringify(req.body));
     var id;
-    var cmd = "SELECT id FROM urls WHERE meetingID='"+req.body.id+"'";
+    var username;
+    var cmd = "SELECT id FROM urls WHERE extension='"+req.body.id+"'";
     sqlite.run(cmd, function (result) {
         console.log(JSON.stringify(result));
         id = result[0].id;
     });
     console.log(id);
+    cmd = "SELECT fullName FROM users WHERE id='"+req.session.passport.user.user_id+"'";
+    sqlite.run(cmd, function (result) {
+        console.log(JSON.stringify(result));
+        username = result[0].fullName;
+    });
     req.body.options.forEach(function (option) {
-        cmd = "INSERT INTO MeetingParticipation (meetingID, Name, date, lowerbound, upperbound, preferred, comment) VALUES ('"+ id +"', '"+ option.name +"',  '"+ option.date +"', '"+ option.start_time +"', '"+ option.end_time +"', '"+ option.pref_start +"', '"+ option.comment +"');";
+        cmd = "INSERT INTO MeetingParticipation (meetingID, Name, userID, date, lowerbound, upperbound, preferred, comment) VALUES ('"+ id +"', '"+ username  +"', '"+ req.session.passport.user.user_id +"',  '"+ option.date +"', '"+ option.start_time +"', '"+ option.end_time +"', '"+ option.pref_start +"', '"+ option.comment +"');";
         console.log(cmd);
         sqlite.run(cmd, function (response) {
             console.log(JSON.stringify(response));
@@ -177,29 +269,27 @@ router.post('/addMeetingParticipant', function (req, res, next) {
 router.post('/sendMeetingInvite', function (req, res, next) {
     console.log("Sending Invite");
     console.log(JSON.stringify(req.body));
-    var id;
-    var inviter;
-    var cmd = "SELECT id, username FROM urls WHERE meetingID='"+req.body.id+"'";
+    var inviter = '';
+    var cmd = "SELECT username FROM users WHERE id='"+ req.session.passport.user.user_id +"'";
     sqlite.run(cmd, function (result) {
+        if (result.error) throw result.error;
         console.log(JSON.stringify(result));
-        id = result[0].id;
         inviter = result[0].username;
     });
     console.log(inviter);
-    req.body.options.forEach(function (option) {
-        cmd = "INSERT INTO MeetingInvite (InviterUsername, InviteeUsername, MeetingID) VALUES ('"+ inviter +"', '"+ option.invitee +"',  '"+ id +"');";
-        console.log(cmd);
-        sqlite.run(cmd, function (response) {
-            console.log(JSON.stringify(response));
-            if (response.error)
-            {
-                console.log("Error  :");
-                console.log(JSON.stringify(response.error));
-                res.status(400).end(response.error);
-            } else {
-                res.status(200).end(id);
-            }
-        });
+    cmd = "INSERT INTO MeetingInvite (InviterUsername, InviteeUsername, MeetingID) VALUES ('"+ inviter +"', '"+ req.body.invitee +"',  '"+ req.body.id +"');";
+    console.log(cmd);
+    sqlite.run(cmd, function (response) {
+        console.log(JSON.stringify(response));
+        if (response.error)
+        {
+            console.log("Error  :");
+            console.log(JSON.stringify(response.error));
+            res.status(400).end(response.error);
+        } else {
+            console.log(typeof response);
+            res.status(200).end(JSON.stringify(response));
+        }
     });
 });
 
@@ -211,6 +301,7 @@ router.get('/register', function (req, res, next) {
 /* POST Register page. */
 router.post('/register', function (req, res, next) {
 
+    req.checkBody('full_name', 'Full Name field cannot be empty.').notEmpty();
     req.checkBody('username', 'Username field cannot be empty.').notEmpty();
     req.checkBody('username', 'Username must be between 4-15 characters long.').len(4, 15);
     req.checkBody('email', 'The email you entered is invalid, please try again.').isEmail();
@@ -233,11 +324,9 @@ router.post('/register', function (req, res, next) {
         const username = req.body.username;
         const email = req.body.email;
         const password = req.body.password;
-
-
-
+        const fName = req.body.full_name;
         bcrypt.hash(password, saltRounds, function (err, hash) {
-            sqlite.run("INSERT INTO users (username, email, password) VALUES ('"+username+"', '"+ email +"', '"+hash+"')", function (results){
+            sqlite.run("INSERT INTO users (username, fullName, email, password) VALUES ('"+username+"', '"+ fName +"', '"+ email +"' ,'"+hash+"')", function (results){
                 if (results.error) throw results.error;
                 sqlite.run("SELECT id as user_id FROM users WHERE username='"+username+"'", function (response) {
                     if (response.error) throw response.error;
@@ -247,9 +336,8 @@ router.post('/register', function (req, res, next) {
                         res.redirect('/');
                     });
                 });
-
                 res.render('register', {title: 'Registration Complete'});
-            })
+            });
         });
     }
 });
@@ -272,7 +360,7 @@ function authenticationMiddleware () {
 /* GET meetings page. */
 
 router.get('/meeting/:id', authenticationMiddleware(), function (req,res) {
-    sqlite.run("SELECT id FROM urls WHERE meetingID='"+req.params.id+"'", function (response) {
+    sqlite.run("SELECT id FROM urls WHERE extension='"+req.params.id+"'", function (response) {
         if (response.error) throw response.error;
         if (JSON.stringify(response) == "[]")
         {

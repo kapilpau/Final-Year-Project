@@ -1,20 +1,48 @@
 {{> header }}
 
-        <div class="container">
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#page-top">Meetings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#detail">Meeting Info</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#dates">Meeting Dates</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#submit">Submission</a>
+            </li>
+        </ul>
+    </div>
 
-            <h1>{{title}}</h1>
+    </nav>
 
-            {{#if errors}}
-                {{#each errors}}
-                    <div class="alert alert-danger">
-                        {{this.msg}}
-                    </div>
-                {{/each}}
-            {{/if}}
+    {{> toggle }}
+
+    <div id="page-content-wrapper">
+
+        <header class="bg-primary text-white">
+            <div class="container">
+                <h2>{{title}}</h2>
+            </div>
+        </header>
+
+        <section id="detail">
+            <div class="container">
+                {{#if errors}}
+                    {{#each errors}}
+                        <div class="alert alert-danger">
+                            {{this.msg}}
+                        </div>
+                    {{/each}}
+                {{/if}}
+                <h3 style="text-align: center">Meeting Info</h3>
 
                 <div class="form-group">
                     <label for="meeting_title">Meeting Title</label>
-                    <input type="text" class="form-control" name="meeting_title" id="meeting_title" placeholder="Title">
+                    <input type="text" class="form-control" name="meeting_title" id="meeting_title" placeholder="Title" on>
                 </div>
 
                 <div class="form-group">
@@ -27,9 +55,6 @@
                     <input type="text" class="form-control" name="meeting_location" id="meeting_location" placeholder="Location">
                 </div>
 
-                <div class="container">
-                </div>
-
                 <div>
                     <div class="checkbox">
                         <label><input type="checkbox" id="privacy" onclick="showHidePass()"> Private</label>
@@ -40,48 +65,65 @@
                     </div>
                 </div>
                 <br>
-                <div>
+                <div class="slidecontainer" style="width: 100%">
                     <label for="length">Duration
                         <p>
-                            <input type="range" id="length1" min="0.25" max="5" value="0" step="0.25" onClick="document.getElementById('length_span1').innerHTML = document.getElementById('length1').value">
-                            Length: <span id="length_span1"></span> hour(s)
-
+                            <input style="width: 100%" type="range" id="length1" class="durationSlider" min="0.25" max="5" value="0" step="0.25" onClick="document.getElementById('length_span1').innerHTML = document.getElementById('length1').value"><br>
                         </p>
                     </label>
+                    Length: <span id="length_span1"></span> hour(s)
                 </div>
-                <br>
+            </div>
+        </section>
 
-                <div id="meeting_option1" class="meetingOptions">
-                    <div class="input-group date" data-provide="datepicker">
-                        <label for="date1">Meeting Date
-                        <input type="date" id="date1">
-                        </label>
-                    </div>
-                    <br>
-                    <div class="input-group clockpicker">
-                        <label for="start_time1">Lowerbound Time
-                        <input type="time" name="start_time1" id="start_time1"></label>
-                    </div>
-                    <br>
-                    <div class="input-group clockpicker">
-                        <label for="end_time1">Upperbound Time
-                        <input type="time" name="end_time1" id="end_time1"></label>
-                    </div>
+        <section id="dates">
+            <div class="container">
+                <h3 style="text-align: center">Meeting Dates</h3>
 
-
+                <div class="row" id="new_pos">
+                    <div id="meeting_option1" class="col-lg-4 col-sm-6 portfolio-item">
+                        <div class="card h-100">
+                            <h5 class="card-header text-white bg-dark">date</h5>
+                            <div class="card-body">
+                                <div class="input-group date" data-provide="datepicker">
+                                    <label for="date1">Meeting Date
+                                        <input type="date" id="date1">
+                                    </label>
+                                </div>
+                                <br>
+                                <div class="input-group clockpicker">
+                                    <label for="start_time1">Lowerbound Time
+                                        <input type="time" name="start_time1" id="start_time1"></label>
+                                </div>
+                                <br>
+                                <div class="input-group clockpicker">
+                                    <label for="end_time1">Upperbound Time
+                                        <input type="time" name="end_time1" id="end_time1"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div id="new_pos"></div>
-                <br><br>
-                <div id="create">
-                    <button type="button" onClick="createDiv()" class="btn btn-success">Add</button> <br><br>
-                    <button id="remove_option" type="button" onclick="removeDiv()" class="btn btn-danger" style="display: none";>Remove</button>
+                <div>
+                    <div id="create" class="mx-auto">
+                        <button style="margin:0 auto; display:block;" type="button" onClick="createDiv()" class="btn btn-success">Add</button> <br>
+                        <button id="remove_option" type="button" onclick="removeDiv()" class="btn btn-secondary" style="display: none; margin:0 auto">Remove</button><br>
+                    </div>
                 </div>
-                <br>
-                <button type="button" onClick="submit()" class="btn btn-primary">Submit</button>
+                <div id = "submit" class="container">
+                    <button style="margin:0 auto; display:block; display: inline-block" type="button" onClick="submit()" class="btn btn-primary">Submit</button>
+                    <button style="margin:0 auto; display:block; display: inline-block" type="button" onClick="clearForm()" class="btn btn-danger">Clear</button>
+                </div>
+            </div>
 
+        </section>
 
         </div>
-    </body>
+    </div>
+</div>
+</body>
+    {{> footer }}
+
 <script>
     var dateCounter = 1;
 
@@ -98,29 +140,37 @@
         dateCounter++;
         var x = document.getElementById("remove_option");
         x.style.display= "block";
-        var meetingOptionHTML = `                    <div class="input-group date" data-provide="datepicker">
-                        <label for="date${dateCounter}">Meeting Date
-                        <input type="date" id="date${dateCounter}">
-                        </label>
-                    </div>
-                    <br>
-                    <div class="input-group clockpicker">
-                        <label for="start_time${dateCounter}">Lowerbound Time
-                        <input type="time" name="start_time" id="start_time${dateCounter}"></label>
-                    </div>
-                    <br>
-                    <div class="input-group clockpicker">
-                        <label for="end_time${dateCounter}">Upperbound Time
-                        <input type="time" name="end_time" id="end_time${dateCounter}"></label>
-                    </div>`;
+        var meetingOptionHTML = `
+                <div class="card h-100">
+                            <h5 class="card-header text-white bg-dark">date</h5>
+                            <div class="card-body">
+                                <div class="input-group date" data-provide="datepicker">
+                                    <label for="date${dateCounter}">Meeting Date
+                                        <input type="date" id="date${dateCounter}">
+                                    </label>
+                                </div>
+                                <br>
+                                <div class="input-group clockpicker">
+                                    <label for="start_time${dateCounter}">Lowerbound Time
+                                        <input type="time" name="start_time" id="start_time${dateCounter}">
+                                    </label>
+                                </div>
+                                <br>
+                                <div class="input-group clockpicker">
+                                    <label for="end_time${dateCounter}">Upperbound Time
+                                        <input type="time" name="end_time" id="end_time${dateCounter}">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>`;
         var div = document.createElement('div');
         var id = "meeting_option" + dateCounter;
         div.id = id;
-        div.className = "meetingOptions";
+        div.className = "col-lg-4 col-sm-6 portfolio-item";
         div.innerHTML = meetingOptionHTML;
         document.getElementById("new_pos").appendChild(div);
-        var newPos = document.getElementById(id);
-        newPos.scrollIntoView();
+        /*var newPos = document.getElementById(id);
+        newPos.scrollIntoView();*/
     }
 
     function removeDiv() {
@@ -227,4 +277,5 @@
     }
 
 </script>
-</html>
+
+{{> footer-end }}
