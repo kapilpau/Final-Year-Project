@@ -46,7 +46,9 @@
                             Meeting Title: <span id="meeting_title"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             Meeting Location: <span id="meeting_location"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             Meeting Description: <span id="meeting_description"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            Meeting Length: <span id="meeting_length"></span> hours
+                            Meeting Length: <span id="meeting_length"></span> hours&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <br>Status: <span id="meeting_status"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            Meeting Time: <span id="meeting_time"></span>
                         </p>
 
                     </div>
@@ -106,10 +108,23 @@
             <section id="optimal">
                 <div style="text-align: center">
                     <h3 style="display: inline-block">Optimal Time</h3>
-                    <div class="container" style="margin: 0 auto;" id="optimal_graph">
+                    <div class="container" style="margin: 0 auto;" id="optimal_graph"></div>
+                </div><br>
+                <div class="container" style="display: inline-block">
+                    <div class="card text-center" style="text-align: center; margin: 0 auto; width: 18rem; display: none" id="closeMeeting">
+                        <h5 class="card-header text-white bg-dark">Close Meeting</h5>
+                        <div class="card-body">
+                            <div class="container" style="margin: 0 auto;"  id="meeting_time_final">
+                                <select class="form-control" id="CloseDateField"></select><br><br>
+                                <input type="time" id="CloseTimeField"><br><br>
+                                <button type="button" onClick="closeMeeting()" class="btn btn-primary">Close</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </section>
+
 
             <section id="add">
                 <h3 style="text-align: center">Add</h3>
@@ -127,17 +142,17 @@
                                 <br>
                                 <div class="input-group clockpicker">
                                     <label for="start_time1">Lowerbound Time
-                                        <input type="time" name="start_time1" id="start_time1"></label>
+                                        <input type="time" min="11:00" name="start_time1" id="start_time1" onclick="unhighlightFields()"></label>
                                 </div>
                                 <br>
                                 <div class="input-group clockpicker">
                                     <label for="end_time1">Upperbound Time
-                                        <input type="time" name="end_time1" id="end_time1"></label>
+                                        <input type="time" name="end_time1" id="end_time1" onclick="unhighlightFields()"></label>
                                 </div>
                                 <br>
                                 <div class="input-group clockpicker">
                                     <label for="pref_start1">Preferred Start Time
-                                        <input type="time" name="pref_start" id="pref_start1"></label>
+                                        <input type="time" name="pref_start" id="pref_start1" onclick="unhighlightFields()"></label>
                                 </div>
                                 <br>
                                 <div>
@@ -199,6 +214,21 @@
             document.getElementById('meeting_description').innerHTML = response.description;
             document.getElementById('meeting_location').innerHTML = response.location;
             document.getElementById('meeting_length').innerHTML = response.length;
+            document.getElementById('meeting_status').innerHTML = response.status;
+
+            if(response.start_time == 0){
+                document.getElementById('meeting_time').innerHTML = "Undecided";
+            }
+            else {
+                document.getElementById('meeting_time').innerHTML = response.start_date + " " + response.start_time;
+            }
+            if(response.status == "Open" && response.isAdmin == true){
+                document.getElementById('closeMeeting').style.display = 'block';
+            }
+            if(response.status == "Closed" ){
+                document.getElementById('add').style.display = 'none';
+            }
+
             var options = response.options;
             var table = document.getElementById('dates');
             var row;
@@ -206,6 +236,8 @@
                 row = table.insertRow(-1);
                 row.insertCell(0).innerHTML = option.date;
                 var select = document.getElementById("date1");
+                select.options[select.options.length] = new Option(option.date, option.date);
+                select = document.getElementById("CloseDateField");
                 select.options[select.options.length] = new Option(option.date, option.date);
                 dates.push(option.date);
                 row.insertCell(1).innerHTML = option.lowerboundLimit;
@@ -258,7 +290,6 @@
             var table = document.getElementById('entriesGraph');
             var row;
             var xaxis;
-            //var data;
             var rowCounter = 0;
             var div;
             var id;
@@ -268,19 +299,6 @@
                 autosize: true,
                 width: 400,
                 height: 300,
-                legend: {
-                    x: 0,
-                    y: 1,
-                    traceorder: 'normal',
-                    font: {
-                        family: 'sans-serif',
-                        size: 12,
-                        color: '#000'
-                    },
-                    bgcolor: '#E2E2E2',
-                    bordercolor: '#FFFFFF',
-                    borderwidth: 2
-                },
             };
 
             var layout2 = {
@@ -288,19 +306,6 @@
                 autosize: true,
                 width: 1000,
                 height: 400,
-                legend: {
-                    x: 0,
-                    y: 1,
-                    traceorder: 'normal',
-                    font: {
-                        family: 'sans-serif',
-                        size: 12,
-                        color: '#000'
-                    },
-                    bgcolor: '#E2E2E2',
-                    bordercolor: '#FFFFFF',
-                    borderwidth: 2
-                },
             };
             options.forEach(function (option) {
                 xaxis = [];
@@ -340,9 +345,11 @@
                     Plotly.addTraces('optimal_graph', {x: [xaxis[0], xaxis[1], xaxis[2], xaxis[3]],y: [0, 1, 1, 0], type: 'scatter',
                         fill: 'tozeroy', name: option.Name});
                 }
+
                 row.insertCell(3).innerHTML = option.comment;
                 rowCounter++;
             });
+
         }
     };
 
@@ -359,17 +366,17 @@
                                     <select class="form-control" id="date${dateCounter}"></select>
                                 </div>
                                 <br>
-                                <div class="input-group clockpicker">
+                                <div class="form-group clockpicker">
                                     <label for="start_time${dateCounter}">Lowerbound Time
                                      <input type="time" name="start_time" id="start_time${dateCounter}"></label>
                                 </div>
                                 <br>
-                                <div class="input-group clockpicker">
+                                <div class="form-group clockpicker">
                                      <label for="end_time${dateCounter}">Upperbound Time
                                     <input type="time" name="end_time" id="end_time${dateCounter}"></label>
                                 </div>
                                 <br>
-                                <div class="input-group clockpicker">
+                                <div class="form-group clockpicker">
                                     <label for="pref_start${dateCounter}">Preferred Start Time
                                     <input type="time" name="pref_start" id="pref_start${dateCounter}"></label>
                                 </div>
@@ -439,6 +446,10 @@
                 document.getElementById('end_time'+no).style.border = "solid #FF0000";
                 submittable = false;
             }
+            if (!document.getElementById('pref_start'+no).value) {
+                document.getElementById('pref_start'+no).style.border = "solid #FF0000";
+                submittable = false;
+            }
             if (!submittable)
             {
                 console.log("Error: not submittable 2");
@@ -467,6 +478,52 @@
                 }
             }
         };
+    }
+
+    function unhighlightFields() {
+        for (var no = 1; no <= dateCounter; no++){
+            document.getElementById('start_time'+no).style.border = "none";
+            document.getElementById('end_time'+no).style.border = "none";
+            document.getElementById('pref_start'+no).style.border = "none";
+                    //"box-shadow: 0 0 3px; margin: 10px";
+        }
+    }
+
+    function closeMeeting(){
+        var submittable = true;
+        console.log("Submitting");
+        var closeTime;
+        if (!document.getElementById('CloseTimeField').value) {
+            document.getElementById('CloseTimeField').style.border = "solid #FF0000";
+            submittable = false;
+        }
+        if (!submittable)
+        {
+            console.log("Error: not submittable 2");
+            return;
+        }
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "/closeMeeting", true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        var params = {
+            "id": window.location.href.split("/")[window.location.href.split("/").length-1],
+            "closeDate": document.getElementById('CloseDateField').value,
+            "closeTime": document.getElementById('CloseTimeField').value
+        };
+        xhttp.send(JSON.stringify(params));
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.responseText) {
+                if (this.status === 200)
+                {
+                    alert("Done");
+                    location.reload();
+                } else
+                {
+                    alert("Error: " + this.responseText)
+                }
+            }
+        };
+
     }
 
     function invite() {

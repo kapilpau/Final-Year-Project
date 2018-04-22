@@ -8,6 +8,14 @@ var bcrypt = require('bcrypt');
 const saltRounds = 10;
 var path = require('path');
 var plotly = require('plotly')("pholbyyu", "yTpnM59UA4XJSA638mFY");
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'osmo.do.not.reply@gmail.com',
+        pass: 'YusufPH97'
+    }
+});
 
 sqlite.connect(__dirname + '/../db/meetings.db');
 /* GET home page. */
@@ -44,7 +52,7 @@ router.post('/createMeeting', function (req, res, next) {
     {
         var pass = req.body.password;
     }
-    var cmd = "INSERT INTO MeetingInfo (title, description, location, adminUsername, locked, password, length) VALUES ('"+ req.body.title +"', '"+ req.body.description +"', '"+ req.body.location +"', '"+ req.session.passport.user.user_id +"', '"+ req.body.locked +"', '"+ pass +"','"+ req.body.length +"');";
+    var cmd = "INSERT INTO MeetingInfo (title, description, location, adminUsername, locked, password, length, status, offStartTime) VALUES ('"+ req.body.title +"', '"+ req.body.description +"', '"+ req.body.location +"', '"+ req.session.passport.user.user_id +"', '"+ req.body.locked +"', '"+ pass +"','"+ req.body.length +"','"+ 'open' +"','"+ '0' +"');";
     console.log(cmd);
     sqlite.run(cmd, function (results) {
         console.log(JSON.stringify(results));
@@ -93,7 +101,7 @@ router.post('/getMeeting', function (req, res, next) {
         if (result.error) throw result.error;
         id = result[0].id;
         console.log(id);
-        sqlite.run("SELECT title, description, location, locked, password, length FROM MeetingInfo WHERE id='"+id+"';", function (data) {
+        sqlite.run("SELECT title, description, location, adminUsername, locked, password, length, status, startDate, startTime FROM MeetingInfo WHERE id='"+id+"';", function (data) {
             if (data.error) throw data.error;
             if (data[0].locked)
             {
@@ -107,6 +115,15 @@ router.post('/getMeeting', function (req, res, next) {
             response.description = data[0].description;
             response.location = data[0].location;
             response.length = data[0].length;
+            response.status = data[0].status;
+            response.start_date = data[0].startDate;
+            response.start_time = data[0].startTime;
+            if(data[0].adminUsername == req.session.passport.user.user_id){
+                response.isAdmin = true;
+            }
+            else{
+                response.isAdmin = false;
+            }
             sqlite.run("SELECT * FROM MeetingDates WHERE meetingId='"+id+"';", function (output) {
                 if (output.error) throw output.error;
                 response.options = output;
@@ -293,6 +310,32 @@ router.post('/sendMeetingInvite', function (req, res, next) {
     });
 });
 
+router.post('/closeMeeting', function (req, res, next) {
+    console.log("Closing meeting");
+    console.log(JSON.stringify(req.body));
+    var id;
+    var cmd = "SELECT id FROM urls WHERE extension='"+req.body.id+"'";
+    sqlite.run(cmd, function (result) {
+        console.log(JSON.stringify(result));
+        id = result[0].id;
+    });
+    console.log(id);
+    cmd = "UPDATE MeetingInfo SET status = 'Closed', startDate = '" + req.body.closeDate + "', startTime = '" + req.body.closeTime + "' WHERE id = '"+ id +"'";
+    console.log(cmd);
+    sqlite.run(cmd, function (response) {
+        console.log(JSON.stringify(response));
+        if (response.error)
+        {
+            console.log("Error  :");
+            console.log(JSON.stringify(response.error));
+            res.status(400).end(response.error);
+        } else {
+            console.log(typeof response);
+            res.status(200).end(JSON.stringify(response));
+        }
+    });
+});
+
 /* GET Register page. */
 router.get('/register', function (req, res, next) {
     res.render('register', {title: 'Registration'});
@@ -306,12 +349,14 @@ router.post('/register', function (req, res, next) {
     req.checkBody('username', 'Username must be between 4-15 characters long.').len(4, 15);
     req.checkBody('email', 'The email you entered is invalid, please try again.').isEmail();
     req.checkBody('email', 'Email address must be between 4-100 characters long, please try again.').len(4, 100);
+    req.checkBody('emailConfirm', 'Email addresses do not match').equals(req.body.email);
     req.checkBody('password', 'Password must be between 8-100 characters long.').len(8, 100);
     req.checkBody("password", "Password must include one lowercase character, one uppercase character, a number, and a special character.").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/, "i");
     req.checkBody('passwordMatch', 'Password must be between 8-100 characters long.').len(8, 100);
     req.checkBody('passwordMatch', 'Passwords do not match, please try again.').equals(req.body.password);
 
     const errors = req.validationErrors();
+    var mailOptions;
 
     if (errors) {
         console.log(`errors: ${JSON.stringify(errors)}`);
@@ -325,6 +370,22 @@ router.post('/register', function (req, res, next) {
         const email = req.body.email;
         const password = req.body.password;
         const fName = req.body.full_name;
+        mailOptions = {
+            from: 'osmo.do.not.reply@gmail.com',
+            to: email,
+            subject: 'Thank you for Registering with OSMO',
+            html: 'Hi ' + fName + '<br>Thank you for registering with OSMO <br>' +
+            'Username: ' + username +
+            '<br> Password: ' + password + '<br>We hope you enjoy using our services'
+        };
+
+        transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
         bcrypt.hash(password, saltRounds, function (err, hash) {
             sqlite.run("INSERT INTO users (username, fullName, email, password) VALUES ('"+username+"', '"+ fName +"', '"+ email +"' ,'"+hash+"')", function (results){
                 if (results.error) throw results.error;
@@ -336,7 +397,8 @@ router.post('/register', function (req, res, next) {
                         res.redirect('/');
                     });
                 });
-                res.render('register', {title: 'Registration Complete'});
+
+                //res.render('register', {title: 'Registration Complete'});
             });
         });
     }
