@@ -19,10 +19,13 @@
     "hbs": "~4.0.1",
     "jQuery": "^1.7.4",
     "js-datepicker": "^2.3.0",
+    "moment": "^2.22.1",
     "morgan": "~1.7.0",
     "mysql": "^2.13.0",
+    "nodemailer": "^4.6.4",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "plotly": "^1.0.6",
     "serve-favicon": "~2.3.0",
     "sqlite-sync": "^0.3.6"
   },

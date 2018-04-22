@@ -1,0 +1,44 @@
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <br>
+            <br>
+            <li class="sidebar-brand">
+                <a href="/">
+                    Main Menu
+                </a>
+            </li>
+            <li>
+                <a href="/">Home</a>
+            </li>
+            {{#if isAuthenticated}}
+            <li>
+                <a href="/dashboard">Dashboard</a>
+            </li>
+            <li>
+                <a href="/meeting">Create Meeting</a>
+            </li>
+            <li>
+                <div style="padding: 20px" class="input-group">
+                    <input class="form-control" style="width: 120px; padding-left: 10px" type="text" name="meetingID" placeholder="Meeting ID">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </span>
+                </div>
+            </li>
+            <li>
+                <a href="/logout">Logout</a>
+            </li>
+            {{else}}
+            <li>
+                <a href="/register">Register</a>
+            </li>
+            <li>
+                <a href="/login">Login</a>
+            </li>
+            {{/if}}
+        </ul>
+    </div>
+

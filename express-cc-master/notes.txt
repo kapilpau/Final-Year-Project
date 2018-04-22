@@ -45,62 +45,14 @@ to do list:
         b) if private meeting insert password
         c) shows all entries in graph form
 
-DB tables:
 
-CREATE TABLE `users` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(16) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `password` binary(60) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
-
-CREATE TABLE `urls` (
-  `id` varchar(11) NOT NULL DEFAULT '',
-  `meetingID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-CREATE TABLE `sessions` (
-  `session_id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `expires` int(11) unsigned NOT NULL,
-  `data` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
-  PRIMARY KEY (`session_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-CREATE TABLE `MeetingParticipation` (
-  `meetingID` int(11) DEFAULT NULL,
-  `username` varchar(16) DEFAULT NULL,
-  `lowerbound` int(11) DEFAULT NULL,
-  `upperbound` int(11) DEFAULT NULL,
-  `LBFlex` int(11) DEFAULT NULL,
-  `UBFlex` int(11) DEFAULT NULL,
-  `comment` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-CREATE TABLE `MeetingInfo` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` text NOT NULL,
-  `description` text,
-  `location` text NOT NULL,
-  `adminUsername` varchar(16) NOT NULL DEFAULT '',
-  `numOfDates` int(10) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  `Locked` tinyint(1) NOT NULL DEFAULT '0',
-  `password` binary(60) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-CREATE TABLE `MeetingDates` (
-  `meetingId` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `lowerboundLimit` int(11) DEFAULT '0',
-  `upperboundLimit` int(11) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+var hrefVal;
+            var hrefHTML;
+            options.forEach(function (option) {
+                hrefVal = "/meeting/" + option.extension;
+                hrefHTML = `<a href = ></a>`;
+                row = table.insertRow(-1);
+                row.insertCell(0).innerHTML = option.id;
+                row.insertCell(1).innerHTML = option.title;
+                row.insertCell(2).innerHTML = "<a>" + option.extension + "</a>";
+            });
