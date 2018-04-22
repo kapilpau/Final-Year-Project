@@ -217,24 +217,30 @@
         var options = [];
         for (var no = 1; no <= dateCounter; no++)
         {
-            if (!document.getElementById('date'+no).value) {
+            if (!document.getElementById('date'+no).value || !(Date.now() < Date.parse(document.getElementById('date'+no).value))) {
                 document.getElementById('date'+no).style.border = "solid #FF0000";
                 submittable = false;
+            } else {
+                document.getElementById('date'+no).style.border = "none";
             }
-            if (!document.getElementById('start_time'+no).value) {
+            if (!document.getElementById('start_time'+no).value || (document.getElementById('end_time'+no).value < document.getElementById('start_time'+no).value)) {
                 document.getElementById('start_time'+no).style.border = "solid #FF0000";
                 submittable = false;
+            } else {
+                document.getElementById('start_time'+no).style.border = "none";
             }
-            if (!document.getElementById('end_time'+no).value) {
+            if (!document.getElementById('end_time'+no).value || (document.getElementById('end_time'+no).value < document.getElementById('start_time'+no).value)) {
                 document.getElementById('end_time'+no).style.border = "solid #FF0000";
                 submittable = false;
+            } else {
+                document.getElementById('end_time'+no).style.border = "none";
             }
             if (!submittable)
             {
                 console.log("Error: not submittable 2");
                 return;
             } else {
-                options.push({"date": document.getElementById('date'+no).value, "start_time": document.getElementById('start_time'+no).value, "end_time": document.getElementById('end_time'+no).value, "length": document.getElementById('length1').value});
+                options.push({"date": document.getElementById('date'+no).value, "start_time": document.getElementById('start_time'+no).value, "end_time": document.getElementById('end_time'+no).value, "length": document.getElementById('length').value});
             }
         }
         var xhttp = new XMLHttpRequest();
@@ -246,7 +252,7 @@
             "location": document.getElementById('meeting_location').value,
             "locked": document.getElementById('privacy').checked,
             "password": document.getElementById('meeting_password').value,
-            "length": document.getElementById('length1').value,
+            "length": document.getElementById('length').value,
             "options": options
         };
         xhttp.send(JSON.stringify(params));

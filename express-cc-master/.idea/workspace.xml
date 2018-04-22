@@ -2,122 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a32cf78-f241-4790-a0b0-1f233612ad17" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/.travis.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/css/2-col-portfolio.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/gulpfile.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/package-lock.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/vendor/bootstrap/css/bootstrap-grid.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/vendor/bootstrap/css/bootstrap-grid.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/vendor/bootstrap/css/bootstrap-reboot.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/vendor/bootstrap/css/bootstrap-reboot.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/vendor/bootstrap/css/bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/vendor/bootstrap/css/bootstrap.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/vendor/bootstrap/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/vendor/bootstrap/css/bootstrap.min.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/vendor/bootstrap/js/bootstrap.bundle.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/vendor/bootstrap/js/bootstrap.bundle.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/vendor/bootstrap/js/bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/vendor/bootstrap/js/bootstrap.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/vendor/bootstrap/js/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/vendor/bootstrap/js/bootstrap.min.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/vendor/jquery/jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/vendor/jquery/jquery.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/vendor/jquery/jquery.min.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/vendor/jquery/jquery.slim.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/vendor/jquery/jquery.slim.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-2-col-portfolio-gh-pages/vendor/jquery/jquery.slim.min.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/.travis.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/css/3-col-portfolio.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/gulpfile.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/package-lock.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/vendor/bootstrap/css/bootstrap-grid.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/vendor/bootstrap/css/bootstrap-grid.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/vendor/bootstrap/css/bootstrap-reboot.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/vendor/bootstrap/css/bootstrap-reboot.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/vendor/bootstrap/css/bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/vendor/bootstrap/css/bootstrap.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/vendor/bootstrap/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/vendor/bootstrap/css/bootstrap.min.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/vendor/bootstrap/js/bootstrap.bundle.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/vendor/bootstrap/js/bootstrap.bundle.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/vendor/bootstrap/js/bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/vendor/bootstrap/js/bootstrap.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/vendor/bootstrap/js/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/vendor/bootstrap/js/bootstrap.min.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/vendor/jquery/jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/vendor/jquery/jquery.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/vendor/jquery/jquery.min.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/vendor/jquery/jquery.slim.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/vendor/jquery/jquery.slim.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-3-col-portfolio-gh-pages/vendor/jquery/jquery.slim.min.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/.travis.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/css/scrolling-nav.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/gulpfile.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/package-lock.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/bootstrap/css/bootstrap-grid.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/bootstrap/css/bootstrap-grid.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/bootstrap/css/bootstrap-reboot.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/bootstrap/css/bootstrap-reboot.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/bootstrap/css/bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/bootstrap/css/bootstrap.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/bootstrap/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/bootstrap/css/bootstrap.min.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/bootstrap/js/bootstrap.bundle.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/bootstrap/js/bootstrap.bundle.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/bootstrap/js/bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/bootstrap/js/bootstrap.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/bootstrap/js/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/bootstrap/js/bootstrap.min.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/jquery-easing/jquery.easing.compatibility.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/jquery-easing/jquery.easing.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/jquery-easing/jquery.easing.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/jquery/jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/jquery/jquery.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/jquery/jquery.min.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/jquery/jquery.slim.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/jquery/jquery.slim.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-scrolling-nav-gh-pages/vendor/jquery/jquery.slim.min.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-simple-sidebar-gh-pages/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-simple-sidebar-gh-pages/.travis.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-simple-sidebar-gh-pages/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-simple-sidebar-gh-pages/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-simple-sidebar-gh-pages/css/simple-sidebar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-simple-sidebar-gh-pages/gulpfile.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-simple-sidebar-gh-pages/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-simple-sidebar-gh-pages/package-lock.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../startbootstrap-simple-sidebar-gh-pages/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/database.spf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/js/angular.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/home.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/scss/style.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/default-test.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sessions" afterPath="$PROJECT_DIR$/sessions" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../report.docx" afterPath="$PROJECT_DIR$/../report.docx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/meetings.db" afterPath="$PROJECT_DIR$/db/meetings.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/common/header.hbs" afterPath="$PROJECT_DIR$/views/common/header.hbs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/Homepage.hbs" afterPath="$PROJECT_DIR$/views/Homepage.hbs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/meeting.hbs" afterPath="$PROJECT_DIR$/views/meeting.hbs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/meetingDetails.hbs" afterPath="$PROJECT_DIR$/views/meetingDetails.hbs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/register.hbs" afterPath="$PROJECT_DIR$/views/register.hbs" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -137,8 +31,18 @@
       <file leaf-file-name="Homepage.hbs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/Homepage.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="32" column="49" lean-forward="false" selection-start-line="32" selection-start-column="49" selection-end-line="32" selection-end-column="49" />
+            <state relative-caret-position="228">
+              <caret line="59" column="32" lean-forward="true" selection-start-line="59" selection-start-column="32" selection-end-line="59" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -154,11 +58,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="meetingDetails.hbs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="meetingDetails.hbs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/meetingDetails.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="164" column="26" lean-forward="true" selection-start-line="164" selection-start-column="26" selection-end-line="164" selection-end-column="26" />
+            <state relative-caret-position="526">
+              <caret line="166" column="24" lean-forward="true" selection-start-line="166" selection-start-column="24" selection-end-line="166" selection-end-column="24" />
               <folding>
                 <marker date="1524412788957" expanded="true" signature="16288:18199" ph="..." />
                 <marker date="1524412788957" expanded="true" signature="16421:18168" ph="..." />
@@ -178,20 +82,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="meeting.hbs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="meeting.hbs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/meeting.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4050">
-              <caret line="270" column="54" lean-forward="false" selection-start-line="270" selection-start-column="54" selection-end-line="270" selection-end-column="54" />
+            <state relative-caret-position="180">
+              <caret line="199" column="43" lean-forward="false" selection-start-line="199" selection-start-column="43" selection-end-line="199" selection-end-column="43" />
               <folding>
-                <marker date="1524412598216" expanded="true" signature="6202:7574" ph="..." />
-                <marker date="1524412598216" expanded="true" signature="6370:7543" ph="..." />
-                <marker date="1524412598216" expanded="true" signature="6459:6708" ph="..." />
-                <marker date="1524412598216" expanded="true" signature="6528:6669" ph="..." />
-                <marker date="1524412598216" expanded="true" signature="6815:7111" ph="..." />
-                <marker date="1524412598216" expanded="true" signature="6890:7072" ph="..." />
-                <marker date="1524412598216" expanded="true" signature="7218:7508" ph="..." />
-                <marker date="1524412598216" expanded="true" signature="7291:7469" ph="..." />
+                <marker date="1524427773303" expanded="true" signature="6202:7574" ph="..." />
+                <marker date="1524427773303" expanded="true" signature="6370:7543" ph="..." />
+                <marker date="1524427773303" expanded="true" signature="6459:6708" ph="..." />
+                <marker date="1524427773303" expanded="true" signature="6528:6669" ph="..." />
+                <marker date="1524427773303" expanded="true" signature="6815:7111" ph="..." />
+                <marker date="1524427773303" expanded="true" signature="6890:7072" ph="..." />
+                <marker date="1524427773303" expanded="true" signature="7218:7508" ph="..." />
+                <marker date="1524427773303" expanded="true" signature="7291:7469" ph="..." />
               </folding>
             </state>
           </provider>
@@ -300,13 +204,13 @@
         <option value="$PROJECT_DIR$/notes.txt" />
         <option value="$PROJECT_DIR$/views/dashboard.hbs" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/views/Homepage.hbs" />
         <option value="$PROJECT_DIR$/public/css/style.css" />
         <option value="$PROJECT_DIR$/views/common/header.hbs" />
         <option value="$PROJECT_DIR$/views/register.hbs" />
         <option value="$PROJECT_DIR$/routes/index.js" />
-        <option value="$PROJECT_DIR$/views/meeting.hbs" />
         <option value="$PROJECT_DIR$/views/meetingDetails.hbs" />
+        <option value="$PROJECT_DIR$/views/Homepage.hbs" />
+        <option value="$PROJECT_DIR$/views/meeting.hbs" />
       </list>
     </option>
   </component>
@@ -356,40 +260,17 @@
             <path>
               <item name="express-cc-master" type="b2602c69:ProjectViewProjectNode" />
               <item name="express-cc-master" type="462c0819:PsiDirectoryNode" />
+              <item name="bin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="express-cc-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="express-cc-master" type="462c0819:PsiDirectoryNode" />
               <item name="db" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="express-cc-master" type="b2602c69:ProjectViewProjectNode" />
               <item name="express-cc-master" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="express-cc-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="express-cc-master" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="express-cc-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="express-cc-master" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="express-cc-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="express-cc-master" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="express-cc-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="express-cc-master" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="express-cc-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="express-cc-master" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -555,12 +436,13 @@
       <workItem from="1523814283520" duration="97867000" />
       <workItem from="1524315954816" duration="1585000" />
       <workItem from="1524352652016" duration="19092000" />
-      <workItem from="1524414195412" duration="258000" />
+      <workItem from="1524414195412" duration="1185000" />
+      <workItem from="1524426411310" duration="1559000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="244927000" />
+    <option name="totallyTimeSpent" value="247413000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -577,10 +459,11 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1437649" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32854864" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35725677" sideWeight="0.50277996" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32695374" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32863188" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35725677" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35725677" sideWeight="0.49722" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32695374" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -590,7 +473,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32695374" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -785,24 +667,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/scss/style.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/www">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="3" lean-forward="false" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -855,28 +723,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/Homepage.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="32" column="49" lean-forward="false" selection-start-line="32" selection-start-column="49" selection-end-line="32" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="57" column="25" lean-forward="false" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/dashboard.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-304">
@@ -922,6 +768,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="398">
           <caret line="48" column="41" lean-forward="false" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -930,23 +777,6 @@
         <state relative-caret-position="4830">
           <caret line="322" column="133" lean-forward="false" selection-start-line="322" selection-start-column="133" selection-end-line="322" selection-end-column="133" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/meeting.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4050">
-          <caret line="270" column="54" lean-forward="false" selection-start-line="270" selection-start-column="54" selection-end-line="270" selection-end-column="54" />
-          <folding>
-            <marker date="1524412598216" expanded="true" signature="6202:7574" ph="..." />
-            <marker date="1524412598216" expanded="true" signature="6370:7543" ph="..." />
-            <marker date="1524412598216" expanded="true" signature="6459:6708" ph="..." />
-            <marker date="1524412598216" expanded="true" signature="6528:6669" ph="..." />
-            <marker date="1524412598216" expanded="true" signature="6815:7111" ph="..." />
-            <marker date="1524412598216" expanded="true" signature="6890:7072" ph="..." />
-            <marker date="1524412598216" expanded="true" signature="7218:7508" ph="..." />
-            <marker date="1524412598216" expanded="true" signature="7291:7469" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2322,14 +2152,55 @@
           <Categories>
             <Category>All</Category>
           </Categories>
+          <SCOPE>All</SCOPE>
           <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/Homepage.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="59" column="32" lean-forward="true" selection-start-line="59" selection-start-column="32" selection-end-line="59" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/www">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-825">
+          <caret line="19" column="3" lean-forward="false" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/meetingDetails.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="164" column="26" lean-forward="true" selection-start-line="164" selection-start-column="26" selection-end-line="164" selection-end-column="26" />
+        <state relative-caret-position="526">
+          <caret line="166" column="24" lean-forward="true" selection-start-line="166" selection-start-column="24" selection-end-line="166" selection-end-column="24" />
           <folding>
             <marker date="1524412788957" expanded="true" signature="16288:18199" ph="..." />
             <marker date="1524412788957" expanded="true" signature="16421:18168" ph="..." />
@@ -2344,6 +2215,23 @@
             <marker date="1524412788957" expanded="true" signature="17841:17867" ph="..." />
             <marker date="1524412788957" expanded="true" signature="17841:18133" ph="..." />
             <marker date="1524412788957" expanded="true" signature="17885:18094" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/meeting.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="199" column="43" lean-forward="false" selection-start-line="199" selection-start-column="43" selection-end-line="199" selection-end-column="43" />
+          <folding>
+            <marker date="1524427773303" expanded="true" signature="6202:7574" ph="..." />
+            <marker date="1524427773303" expanded="true" signature="6370:7543" ph="..." />
+            <marker date="1524427773303" expanded="true" signature="6459:6708" ph="..." />
+            <marker date="1524427773303" expanded="true" signature="6528:6669" ph="..." />
+            <marker date="1524427773303" expanded="true" signature="6815:7111" ph="..." />
+            <marker date="1524427773303" expanded="true" signature="6890:7072" ph="..." />
+            <marker date="1524427773303" expanded="true" signature="7218:7508" ph="..." />
+            <marker date="1524427773303" expanded="true" signature="7291:7469" ph="..." />
           </folding>
         </state>
       </provider>
